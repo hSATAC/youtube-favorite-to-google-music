@@ -5,7 +5,8 @@ require 'json'
 require 'parseconfig'
 
 # read config file 
-config_file = '/Users/cat/Dropbox/Music/auto_add_google_music/config/yt2gm.conf'
+config_file = ARGV[0]
+config_file ||= 'config/yt2gm.conf'
 conf = ParseConfig.new(config_file)
 last_check = conf.params['last_check']
 
