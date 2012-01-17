@@ -30,7 +30,7 @@ unless last_check.nil? then
       for link in item['link']
         if link['rel'] == 'alternate' then
           puts 'Grabbing: '+ link['href']
-          `youtube-dl -o "%(stitle)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link['href']}"`
+          `youtube-dl -o "%(title)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link['href']}"`
         end
       end
     end
