@@ -23,7 +23,7 @@ unless last_check.nil? then
 
   puts 'Last Check Time: '+ last_check
 
-  json_object = JSON.parse(open("http://gdata.youtube.com/feeds/api/users/sevencat777/favorites?alt=json&v=2").read)
+  json_object = JSON.parse(open("http://gdata.youtube.com/feeds/api/users/#{conf.params['youtube_acc']}/favorites?alt=json&v=2").read)
   for item in json_object['feed']['entry']
     if(Time.parse(last_check) < Time.parse(item['published']['$t'])) then
       puts item['title']['$t'] + 'added at ' + Time.parse(item['published']['$t']).to_s
