@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'rubygems'
+require "bundler/setup"
 require 'open-uri'
 require 'json'
 require 'parseconfig'
