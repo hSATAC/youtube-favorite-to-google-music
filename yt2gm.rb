@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require "bundler/setup"
+require 'bundler/setup'
 require 'open-uri'
 require 'json'
 require 'parseconfig'
+require 'id3lib'
 
 # read config file 
 config_file = ARGV[0]
@@ -18,16 +19,17 @@ conf.write(file)
 file.close()
 
 #debug
-#last_check = Time.parse("UTC 2012-05-07 13:54:32").utc.to_s
+last_check = Time.parse("UTC 2013-02-28 13:54:32").utc.to_s
 
 def get_favorites(youtube_acc)
   json_object = JSON.parse(open("http://gdata.youtube.com/feeds/api/users/#{youtube_acc}/favorites?alt=json&v=2").read)
+  puts json_object
   json_object['feed']['entry']
 end
 
 def download(link)
   puts 'Grabbing: '+ link
-  `youtube-dl -o "%(title)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link}"` 
+  #`youtube-dl -o "%(title)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link}"` 
 end
 
 def get_download_link(item)

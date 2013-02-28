@@ -14,6 +14,8 @@ The video-grabbing and encoding part is base on [youtube-dl](https://github.com/
 
 You'll need to ```gem install whenever``` if you want to set a crontab based on ```config/scheduler/rb```
 
+[id3lib](http://id3lib.sourceforge.net/) is required for gem `id3lib-ruby`
+
 ## Usage
 
 ### Run
