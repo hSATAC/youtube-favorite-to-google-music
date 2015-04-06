@@ -5,7 +5,7 @@ require 'open-uri'
 require 'json'
 require 'parseconfig'
 
-# read config file 
+# read config file
 config_file = ARGV[0]
 config_file ||= 'config/yt2gm.conf'
 conf = ParseConfig.new(config_file)
@@ -26,7 +26,7 @@ def get_favorites(youtube_acc)
   json_object['feed']['entry']
 end
 
-def download(link)
+def download(link, music_path)
   puts 'Grabbing: '+ link
   `cd #{music_path} && youtube-dl -o "%(title)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link}"` 
 end
@@ -44,7 +44,7 @@ unless last_check.nil? then
   get_favorites(conf.params['youtube_acc']).each do |item|
     if new_item? item, last_check
       puts item['title']['$t'] + 'added at ' + Time.parse(item['published']['$t']).to_s
-      download get_download_link(item)
+      download get_download_link(item), music_path
     end
   end
 end
