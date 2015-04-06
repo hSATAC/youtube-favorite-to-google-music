@@ -14,7 +14,7 @@ RUN cp /youtube-favorite-to-google-music-master/config/yt2gm.conf.sample /appdat
 
 VOLUME ["/appdata", "/music"]
 
-ADD yt2gm.sh /etc/periodic/15min/yt2gm.sh
+ADD yt2gm.sh /etc/periodic/15min/yt2gm
 
 ADD supervisord.conf /etc/supervisord.conf
 
