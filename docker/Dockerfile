@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.1
 
-RUN apk --update add ca-certificates ruby-dev wget supervisor build-base ffmpeg youtube-dl
+RUN apk --update add ca-certificates ruby-dev wget supervisor build-base ffmpeg youtube-dl && rm -rf /var/cache/apk/*
 
 RUN gem install bundler --no-ri --no-rdoc
 
@@ -10,7 +10,7 @@ RUN cd youtube-favorite-to-google-music-master && bundle
 
 RUN mkdir /appdata
 
-RUN cp /youtube-favorite-to-google-music/config/yt2gm.conf.example /appdata/yt2gm.conf
+RUN cp /youtube-favorite-to-google-music-master/config/yt2gm.conf.sample /appdata/yt2gm.conf
 
 VOLUME /appdata
 
