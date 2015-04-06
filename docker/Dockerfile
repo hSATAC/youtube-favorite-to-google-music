@@ -8,11 +8,11 @@ RUN wget https://github.com/hSATAC/youtube-favorite-to-google-music/archive/mast
 
 RUN cd youtube-favorite-to-google-music-master && bundle
 
-RUN mkdir /appdata
+RUN mkdir /appdata /music
 
 RUN cp /youtube-favorite-to-google-music-master/config/yt2gm.conf.sample /appdata/yt2gm.conf
 
-VOLUME /appdata
+VOLUME ["/appdata", "/music"]
 
 ADD yt2gm.sh /etc/periodic/15min/yt2gm.sh
 
