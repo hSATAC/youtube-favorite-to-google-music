@@ -10,6 +10,7 @@ config_file = ARGV[0]
 config_file ||= 'config/yt2gm.conf'
 conf = ParseConfig.new(config_file)
 last_check = conf.params['last_check']
+music_path = conf.params['music_path'] || '.'
 
 # write current time to config
 conf.params['last_check'] = Time.now.utc.to_s
@@ -27,7 +28,7 @@ end
 
 def download(link)
   puts 'Grabbing: '+ link
-  `youtube-dl -o "%(title)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link}"` 
+  `cd #{music_path} && youtube-dl -o "%(title)s.%(ext)s" -q --extract-audio --audio-format "mp3" "#{link}"` 
 end
 
 def get_download_link(item)
@@ -44,7 +45,7 @@ unless last_check.nil? then
     if new_item? item, last_check
       puts item['title']['$t'] + 'added at ' + Time.parse(item['published']['$t']).to_s
       download get_download_link(item)
-    end 
+    end
   end
 end
 
